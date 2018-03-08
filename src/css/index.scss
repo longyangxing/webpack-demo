@@ -1,0 +1,9 @@
+$bg-color : #eee;
+.body{
+    background: $bg-color;
+}
+#img{
+    background: url('../images/123.jpg')  0 0 no-repeat;
+    width: 200px;
+    height: 200px;
+}

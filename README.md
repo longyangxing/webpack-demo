@@ -113,3 +113,67 @@ module.exports={
 ```
 > 终端输入npm run server，输入http://localhost:1717
 
+### css文件打包
+> npm install style-loader --save-dev
+> npm install css-loader --save-dev
+```js
+  // webpack.config.js
+  
+  module:{
+    rules: [{
+       test: /\.css$/,
+       use: ['style-loader','css-loader']
+    }]
+  }
+
+```
+### 压缩JS
+> npm install uglify-webpack-plugin --save-dev
+> 在webpack引入 const uglify = require('uglify-webpack-plugin') 
+
+```js
+const path=require('path');
+const uglify = require('uglifyjs-webpack-plugin');
+module.exports={
+    entry:{
+        entry:'./src/entry.js',
+        entry2:'./src/entry2.js'
+    },
+    output:{
+        path:path.resolve(__dirname,'dist'),
+        filename:'[name].js'
+    },
+    module:{
+        rules:[
+            {
+                test:/\.css$/,
+                use: ["style-loader", "css-loader"]
+            }
+        ]
+    },
+    plugins:[
+        new uglify()
+    ],
+    devServer:{
+       contentBase:path.resolve(__dirname,'dist'),
+       host:'192.168.0.104',
+       compress:true,
+       port:1717
+    }
+}
+```
+### HTML文件的发布
+> npm install html-webpack-plugin
+> 引入 const htnlPlugin = require('htnl-webpack-plugin') 
+
+在webpack.config.js的plugins里进行插件配置
+
+```js
+  new htmlPlugin({
+    minify:{
+     removeAttributeQuotes: true
+    },
+    hash: true,
+    template: './src/index.html'
+  })
+```

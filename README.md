@@ -84,3 +84,32 @@ module.exports={
     devServer:{}
 }
 ```
+### 服务和热更新
+> npm install webpack-dev-server --save-dev
+```js
+  // webpack.config.js
+  
+  devServer:{
+    // 设置基本目录结构
+    contentBase:[ath.resolve(__dirname,'dist'),
+    // 服务器IP地址，可以用IP地址也可以用localhost
+    host:'localhost',
+    //服务端压缩
+    compress：true,
+    // 配置端口号
+    port: 1717
+  }
+```
+* contentBase: 配置服务器基本运行路径，用于找到程序打包
+* host： 服务器运行地址，建议使用本机IP
+* compress： 服务端压缩选型，一般设置为开启
+* port： 服务运行端口
+
+```js
+  // package.json
+  "scripts":{
+    "server": "webpack-dev-server"
+  }
+```
+> 终端输入npm run server，输入http://localhost:1717
+
